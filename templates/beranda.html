@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Beranda - Toko Flask{% endblock %}
+
+{% block content %}
+    <h2>Selamat Datang di Butik Parfum Zakiya Scents</h2>
+    <p style="margin-top: 20px; line-height: 1.6;">
+        Eksplorasi koleksi aroma teh, matcha, dan citrus tropis pilihan untuk kebutuhan kampus dan harian.
+    </p>
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('list_produk') }}" style="display: inline-block; padding: 10px 20px; background: #2563eb; color: white; border-radius: 5px; text-decoration: none; font-weight: bold;">Lihat Katalog Produk</a>
+        <a href="{{ url_for('form_cek') }}" style="display: inline-block; padding: 10px 20px; background: #4b5563; color: white; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 10px;">Cek Username</a>
+    </div>
+{% endblock %}

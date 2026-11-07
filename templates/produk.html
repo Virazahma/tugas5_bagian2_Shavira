@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Katalog Parfum — Zakiya Scents{% endblock %}
+
+{% block content %}
+<div class="animate-item">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <div>
+            <span class="badge bg-danger mb-1 px-2 py-1">MALL ORI 100%</span>
+            <h2 class="fw-bold mb-0">Katalog Koleksi Parfum</h2>
+        </div>
+        <div class="mt-2 mt-sm-0">
+            {# Filter Jinja2: | length untuk menghitung jumlah produk #}
+            <span class="badge bg-dark px-3 py-2 fs-6 rounded-pill">
+                Total Koleksi: {{ produk_list | length }} Produk
+            </span>
+        </div>
+    </div>
+
+    <!-- Grid Katalog Ala Shopee (Responsif di HP, Tablet, & Laptop) -->
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4">
+        {# Perulangan {% for %} sesuai syarat tugas #}
+        {% for id, item in produk_list.items() %}
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm shopee-card overflow-hidden">
+                <!-- Gambar & Badge Diskon -->
+                <div class="position-relative overflow-hidden bg-light" style="aspect-ratio: 1/1;">
+                    <img src="{{ item.gambar }}" alt="{{ item.nama }}" class="w-100 h-100 object-fit-cover product-img">
+                    <span class="position-absolute top-0 start-0 bg-danger text-white fw-bold px-2 py-1 small rounded-end mt-2">
+                        Mall
+                    </span>
+                    <span class="position-absolute top-0 end-0 bg-warning text-dark fw-bold px-2 py-1 small">
+                        -{{ item.diskon }}
+                    </span>
+                </div>
+
+                <!-- Detail Kartu -->
+                <div class="card-body p-3 d-flex flex-column">
+                    <span class="text-muted" style="font-size: 11px;">{{ item.kategori | upper }}</span>
+                    
+                    {# Filter Jinja2: | title untuk merapikan huruf kapital nama produk #}
+                    <h6 class="card-title fw-semibold text-dark mt-1 mb-2 text-truncate-2" style="font-size: 14px; line-height: 1.4; min-height: 40px;">
+                        {{ item.nama | title }}
+                    </h6>
+
+                    <!-- Harga Coret & Harga Promo -->
+                    <div class="mt-auto">
+                        <div class="text-muted text-decoration-line-through" style="font-size: 12px;">
+                            {{ item.harga_asli }}
+                        </div>
+                        <div class="fw-bold text-danger fs-5">
+                            {{ item.harga }}
+                        </div>
+
+                        <!-- Rating Bintang & Terjual -->
+                        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top text-secondary" style="font-size: 12px;">
+                            <span>⭐ {{ item.rating }}</span>
+                            <span>{{ item.terjual }} Terjual</span>
+                        </div>
+                        <div class="text-muted mt-1" style="font-size: 11px;">
+                            📍 {{ item.lokasi }}
+                        </div>
+                    </div>
+
+                    <!-- Tombol Detail (Menggunakan url_for) -->
+                    <a href="{{ url_for('detail_produk', id=id) }}" class="btn btn-primary-custom w-100 mt-3 py-2 btn-sm">
+                        Lihat Detail
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

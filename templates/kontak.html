@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Kontak Kami — Zakiya Scents{% endblock %}
+
+{% block content %}
+<div class="animate-item">
+    <div class="mb-4 pb-2 border-bottom">
+        <span class="badge bg-teal-subtle text-dark border mb-2 px-3 py-1">CUSTOMER SUPPORT</span>
+        <h2 class="fw-bold mb-1">Hubungi Kami</h2>
+        <p class="text-secondary">Punya pertanyaan seputar koleksi parfum kami? Tim kami siap membantu Anda.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="p-4 rounded-4 bg-light border h-100">
+                <h5 class="fw-bold text-dark mb-3">📍 Lokasi Butik & Gudang</h5>
+                <p class="mb-1 fw-semibold">Zakiya Scents Flagship Store</p>
+                <p class="text-secondary small mb-3">Surabaya, Jawa Timur, Indonesia</p>
+                
+                <h5 class="fw-bold text-dark mb-2">🕒 Jam Operasional</h5>
+                <p class="text-secondary small mb-0">Senin – Sabtu: 09.00 – 21.00 WIB<br>Minggu / Hari Libur: 10.00 – 17.00 WIB</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="p-4 rounded-4 bg-light border h-100">
+                <h5 class="fw-bold text-dark mb-3">💬 Layanan Pelanggan</h5>
+                <div class="d-flex flex-column gap-2 small">
+                    <div>
+                        <strong class="text-dark">WhatsApp Orders:</strong><br>
+                        <span class="text-secondary">+62 812-3456-7890</span>
+                    </div>
+                    <div>
+                        <strong class="text-dark">Email Resmi:</strong><br>
+                        <span class="text-secondary">support@zakiyascents.com</span>
+                    </div>
+                    <div>
+                        <strong class="text-dark">Official Store Shopee:</strong><br>
+                        <span class="text-secondary">shopee.co.id/zakiyascents.id</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 pt-2">
+        <a href="{{ url_for('beranda') }}" class="btn btn-outline-secondary px-4 py-2 rounded-3">
+            &larr; Kembali ke Beranda
+        </a>
+    </div>
+</div>
+{% endblock %}

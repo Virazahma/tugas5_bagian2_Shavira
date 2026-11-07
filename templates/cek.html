@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Cek Username Member — Zakiya Scents{% endblock %}
+
+{% block content %}
+<div class="animate-item">
+    <h2 class="fw-bold mb-2">Pengecekan Username Member</h2>
+    <p class="text-secondary">Periksa ketersediaan username melalui form di bawah atau akses URL <code>/cek/&lt;username&gt;</code>:</p>
+
+    <form action="{{ url_for('form_cek') }}" method="GET" class="my-4">
+        <div class="row g-2 align-items-center">
+            <div class="col-sm-8 col-md-6">
+                <input type="text" id="usernameInput" name="username" placeholder="Ketik username (min. 4 karakter)..." value="{{ username or '' }}" required class="form-control form-control-lg fs-6">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary-custom">Periksa Username</button>
+            </div>
+        </div>
+        <div id="liveFeedback"></div>
+    </form>
+
+    {# Poin 2 Tugas: Evaluasi {% if %} 3 Kondisi (Tidak Valid, Tersedia, Sudah Dipakai) #}
+    {% if username %}
+        {% if not valid %}
+            <div class="alert alert-warning border-warning shadow-sm mt-3">
+                ⚠️ <strong>Tidak Valid:</strong> Username <strong>"{{ username }}"</strong> terlalu pendek! Minimal harus terdiri dari 4 karakter.
+            </div>
+        {% elif tersedia %}
+            <div class="alert alert-success border-success shadow-sm mt-3">
+                ✅ <strong>Tersedia:</strong> Username <strong>"{{ username }}"</strong> belum terdaftar dan dapat digunakan!
+            </div>
+        {% else %}
+            <div class="alert alert-danger border-danger shadow-sm mt-3">
+                ❌ <strong>Sudah Dipakai:</strong> Username <strong>"{{ username }}"</strong> sudah terdaftar sebagai member Zakiya Scents.
+                <div class="mt-2">
+                    <a href="{{ url_for('profil_user', username=username) }}" class="btn btn-sm btn-outline-danger fw-semibold">
+                        Lihat Profil Member &rarr;
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <hr class="my-4 text-secondary opacity-25">
+
+    <div class="small text-secondary">
+        <p class="fw-semibold mb-2">💡 Pintasan Uji Cepat (Klik langsung untuk Demo):</p>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{{ url_for('cek_langsung', username='abc') }}" class="badge bg-warning-subtle text-warning-emphasis text-decoration-none p-2 border border-warning-subtle">
+                Uji Tidak Valid (/cek/abc)
+            </a>
+            <a href="{{ url_for('cek_langsung', username='admin') }}" class="badge bg-danger-subtle text-danger-emphasis text-decoration-none p-2 border border-danger-subtle">
+                Uji Sudah Dipakai (/cek/admin)
+            </a>
+            <a href="{{ url_for('cek_langsung', username='shavira') }}" class="badge bg-success-subtle text-success-emphasis text-decoration-none p-2 border border-success-subtle">
+                Uji Tersedia (/cek/shavira)
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

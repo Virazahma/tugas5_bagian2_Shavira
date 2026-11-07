@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Profil {{ username }} — Zakiya Scents{% endblock %}
+
+{% block content %}
+<div class="animate-item">
+    <h2 class="fw-bold mb-3">Profil Member: {{ username | upper }}</h2>
+    <div class="p-4 rounded-4 bg-light border mb-4">
+        <p class="mb-2"><strong>Nama Lengkap:</strong> {{ user.nama | title }}</p>
+        <p class="mb-2"><strong>Kategori Member:</strong> {{ user.role }}</p>
+        <p class="mb-0"><strong>Status Akun:</strong> <span class="badge bg-success">{{ user.status }}</span></p>
+    </div>
+    <a href="{{ url_for('form_cek') }}" class="btn btn-primary-custom">&larr; Kembali ke Cek Username</a>
+</div>
+{% endblock %}
